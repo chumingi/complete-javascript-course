@@ -155,3 +155,64 @@ console.log(methodChumingi.age);
 console.log(methodChumingi.age);
 console.log(methodChumingi.age);
 console.log(methodChumingi.age);
+
+// for loop
+for (let rep = 0; rep <= 10; rep++) {
+    console.log(`Lifting weights repetation ${rep}`)
+}
+
+// Array를 이용한 for loop
+const mingiArray = [
+    "Mingi",
+    "Chu",
+    2026 - 2004,
+    "Senior in university",
+    ["Michel", "Bob", "Peter"],
+    true,
+];
+const types = [];
+for (let i = 0; i < mingiArray.length; i++) {
+    console.log(mingiArray[i], typeof mingiArray[i]);
+    types.push(typeof mingiArray[i]);
+}
+console.log(types);
+
+// continue statement — 현재 반복에서 나가고 다음 반복 실행
+console.log("--- ONLY STRINGS ---");
+for (let i = 0; i < mingiArray.length; i++) {
+    if (typeof mingiArray[i] !== 'string') continue;  // string이 아니면 다음 반복으로 넘어감
+    console.log(mingiArray[i], typeof mingiArray[i]);
+}
+
+// break statement — 반복 자체를 완전히 종료
+console.log("--- BREAK WITH NUMBER ---");
+for (let i = 0; i < mingiArray.length; i++) {
+    if (typeof mingiArray[i] === 'number') break;  // 숫자가 나오면 반복 종료
+    console.log(mingiArray[i], typeof mingiArray[i]);
+}
+
+// Looping backwards
+for (let i = mingiArray.length - 1; i >= 0; i--) {
+    console.log(mingiArray[i]);
+}
+
+// Loops in loops
+for (let exercise = 1; exercise <= 3; exercise++) {
+    console.log(`--- Starting exercise ${exercise}`);
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Lifting weight repetation ${rep}`);
+    }
+}
+
+// while loop
+let repWhile = 1;
+while (repWhile <= 10) {
+    console.log(`WHILE: Lifting weights repetation ${repWhile}`);
+    repWhile++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+}
