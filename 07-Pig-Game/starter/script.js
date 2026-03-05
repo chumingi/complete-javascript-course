@@ -67,7 +67,7 @@ btnHold.addEventListener('click', () => {
 
     if (scores[activePlayer] >= 10) {
       playing = false;
-      console.log(`Player${activePlayer} wons the game!`);
+      console.log(`Player${activePlayer + 1} won the game!`);
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
@@ -75,8 +75,29 @@ btnHold.addEventListener('click', () => {
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
       diceEl.classList.add('hidden');
+      document.getElementById(`current--${activePlayer}`).textContent = 0;
     } else {
       switchPlayer();
     }
   }
+});
+
+btnNew.addEventListener('click', () => {
+  /*
+    - playing 변수 값 true로 변경
+    - activePlayer 변수를 0으로 초기화
+    - 두 플레이어 점수 0으로 초기화
+    - player--winner 스타일 제거
+  */
+  console.log('New game');
+  playing = true;
+  document
+    .getElementById(`current--${activePlayer}`)
+    .classList.remove('player--winner');
+  activePlayer = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  scores[0] = 0;
+  scores[1] = 0;
+  currentScore = 0;
 });
