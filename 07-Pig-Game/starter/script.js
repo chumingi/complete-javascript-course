@@ -12,14 +12,24 @@ const current1El = document.getElementById('current--1');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 
-score0El.textContent = 0;
-score1El.textContent = 0;
-diceEl.classList.add('hidden');
+let scores, currentScore, activePlayer, playing;
 
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0; // 0: Player0, 1: Player1
-let playing = true;
+const init = () => {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0; // 0: Player0, 1: Player1
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  diceEl.classList.add('hidden');
+
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+init();
 
 const switchPlayer = () => {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -90,14 +100,5 @@ btnNew.addEventListener('click', () => {
     - player--winner 스타일 제거
   */
   console.log('New game');
-  playing = true;
-  document
-    .getElementById(`current--${activePlayer}`)
-    .classList.remove('player--winner');
-  activePlayer = 0;
-  score0El.textContent = 0;
-  score1El.textContent = 0;
-  scores[0] = 0;
-  scores[1] = 0;
-  currentScore = 0;
+  init();
 });
