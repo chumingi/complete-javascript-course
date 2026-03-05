@@ -9,12 +9,15 @@ const btnHold = document.querySelector('.btn--hold');
 const btnRoll = document.querySelector('.btn--roll');
 const current0El = document.querySelector('#current--0');
 const current1El = document.getElementById('current--1');
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
 
 score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
 let currentScore = 0;
+let activePlayer = 0; // 0: Player0, 1: Player1
 
 btnRoll.addEventListener('click', () => {
   /*
@@ -31,7 +34,13 @@ btnRoll.addEventListener('click', () => {
   // 주사위 숫자가 1인지 확인
   if (dice !== 1) {
     currentScore += dice;
-    current0El.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
   } else {
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0El.classList.toggle('player-active');
+    player1El.classList.toggle('player-active');
   }
 });
