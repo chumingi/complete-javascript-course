@@ -51,3 +51,115 @@ function calcAge(birthYear) {
 
 const firstName = 'Mark';
 calcAge(1991);
+
+// HOisting
+function hoisting() {
+  console.log(me); // undefined
+  // console.log(job);  // ReferenceError: Cannot access 'job' before initialization
+  // console.log(birthYear);  // ReferenceError: Cannot access 'birthYear' before initialization
+
+  var me = 'Mingi'; // undefined로 초기화
+  let job = 'Senior in university'; // hoisting 불가
+  const birthYear = 2004; // hoisting 불가
+
+  console.log(addDecl(2, 3)); // 5
+  // console.log(addExpr(2, 3));  // ReferenceError: Cannot access 'addExpr' before initialization
+  // console.log(addArrow(2, 3));  // TypeError: addArrow is not a function
+
+  function addDecl(a, b) {
+    return a + b;
+  } // hoisting 가능
+  const addExpr = function (a, b) {
+    return a + b;
+  }; // const로 선언된 일반 변수와 같은 취급 (hoisting 불가)
+  var addArrow = (a, b) => a + b;
+  // undefined로 초기화
+}
+hoisting();
+
+// var 사용을 주의해야 하는 예제
+// 의도: numProducts가 0이면 deleteShoppingCart() 실행
+// 결과: hoisting에 의해 numProducts가 undefined가 되어 deleteShoppingCart() 실행
+if (!numProducts) deleteShoppingCart();
+var numProducts = 10;
+function deleteShoppingCart() {
+  console.log('All products deleted');
+}
+
+// this 키워드
+// global scope
+console.log(this); // live-server 실행 시 window 객체 확인
+// normal function
+const calcAgeDecl = function (birthYear) {
+  console.log(2026 - birthYear);
+  console.log(this); // undefined
+};
+calcAgeDecl(2004);
+// arrow function
+const calcAgeArrow = birthYear => {
+  console.log(2026 - birthYear);
+  console.log(this); // window 객체, =parent(global) 객체
+};
+calcAgeArrow(2004);
+// method
+const mingi = {
+  birthYear: 2004,
+  calcAge: function () {
+    console.log(2026 - this.birthYear);
+    console.log(this); // 'mingi' 객체
+  },
+};
+mingi.calcAge();
+// method 내의 this 값은
+// 해당 메소드를 호출한 객체에 따라 다르게 할당됨을 확인하는 예제
+const matilda = {
+  birthYear: 2011,
+};
+matilda.calcAge = mingi.calcAge; // method borrowing
+matilda.calcAge(); // 15, matilda 객체 출력
+
+// Regular function vs Arrow function
+var personName = 'Matilda'; // 브라우저의 window 객체에 personName 속성 추가
+const mingi2 = {
+  personName: 'Mingi',
+  birthYear: 2004,
+  calcAge: function () {
+    console.log(2026 - this.birthYear);
+    console.log(this); // 'mingi' 객체
+
+    const self = this;
+    const isMillenial = function () {
+      console.log(this); // undefined
+      // console.log(this.birthYear >= 1981 && this.birthYear <= 1998);
+      // TypeError: Cannot read properties of undefined (reading 'birthYear')
+      console.log(self.birthYear >= 1981 && self.birthYear <= 1998);
+      // ES6 이전 해결방법
+    };
+    isMillenial();
+
+    // ES6 해결방법 - arrow function은 자신의 this 키워드를 가지지 ㅏㄶ음
+    const isMillenialArrow = () => {
+      console.log(this); // undefined
+      console.log(this.birthYear >= 1981 && this.birthYear <= 1998);
+    };
+    isMillenialArrow();
+  },
+  greet: () => console.log(`Hey, ${this.personName}`),
+  // arrow function은 this 키워드를 가지지 않음, window 객체의 personName 속성 참조
+  // method에 arrow function 사용 피하는 것 추천
+};
+mingi2.greet(); // Hey, Matilda
+mingi2.calcAge();
+
+// arguments 키워드
+const addArgExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addArgExpr(3, 5); // [Arguments] { '0': 3, '1': 5 }
+// arrow function은 arguments 키워들르 가지지 않음
+var addArgArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+// addArgArrow(2, 5, 8);  // ReferenceError: 'arguemtns' is not defined
