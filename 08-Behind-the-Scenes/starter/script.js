@@ -163,3 +163,71 @@ var addArgArrow = (a, b) => {
   return a + b;
 };
 // addArgArrow(2, 5, 8);  // ReferenceError: 'arguemtns' is not defined
+
+// Memory allocation
+function memAlloc() {
+  // memAlloc() function context
+  const name = 'Mingi'; // memAlloc() EC의 variable environments에 name = "Mingi"
+  const age = calcAge(2004); // calcAge() 호출, calcAGe() EC 생성, 리턴 값 22가 age 변수에 할당
+  let newAge = age; // memAlloc() EC의 variable environment에 newAge = 22 저장
+  newAge++; // newAge 값을 23으로 변경
+
+  // memory heap에 저장되는 location 객체
+  const location = {
+    // memAlloc() EC의 location 변수에는 객체에 대한 참조값 저장
+    city: 'Guri',
+    country: 'Korea',
+  };
+
+  const newLocation = location; // location 객체의 참조값이 그대로 newLocation에 저장
+  newLocation.city = 'Seoul'; // 참조된 location 객체의 city 속성값 변경
+  console.log(location); // 같은 객체를 참조하기 때문에 city 값 변경됨
+
+  function calcAge(birthYear) {
+    // calcAge() function execution context
+    // memAlloc() EC의 calcAge 변수에 함수의 참조값 저장
+    const now = 2026; // clacAge() EC의 variable environment에 now = 2026 저장
+    const x = now - birthYear; // clacAge() EC의 variable environment에 x = 22 저장
+    return x; // x값 리턴, call stack에서 clacAge() EC 제거
+  }
+}
+memAlloc();
+
+// memory allocation 예제 2
+const memAlloc2 = function () {
+  const jessica = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+    familiy: ['Alice', 'Bob'],
+  };
+  // const marriedJessica = jessica;
+  // marriedJessica.lastName = 'Davis';
+
+  function marriedPerson(originalPerson, lastName) {
+    originalPerson.lastName = lastName;
+    return originalPerson;
+  }
+  const marriedJessica = marriedPerson(jessica, 'Davis');
+
+  console.log('Before:', jessica);
+  console.log('After:', marriedJessica);
+
+  // ...을 이용하여 jessica 객체의 모든 속성을 새 객체에 복사
+  const jessicaCopy = { ...jessica };
+  jessicaCopy.age = 28;
+  console.log(jessica, jessicaCopy);
+  jessicaCopy.familiy.push('Marry');
+  console.log('Before copy:', jessica);
+  console.log('After copy:', jessicaCopy);
+  // ...을 이용하여 속성값을 복사한 새 객체를 만들어도
+  // familiy 배열(객체)의 참조값은 동일하기 때문에
+  // Before과 After의 familiy가 모두 변함
+
+  // deep copy/clone
+  const jessicaClone = structuredClone(jessica);
+  jessicaClone.familiy.push('Peter');
+  console.log('Before clone:', jessica);
+  console.log('After clone:', jessicaClone);
+};
+memAlloc2();
