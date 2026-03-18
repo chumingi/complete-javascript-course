@@ -44,4 +44,36 @@ const restaurant = {
       close: 24,
     },
   },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
 };
+
+// Array desturcturing
+const arr = [2, 3, 4];
+const a = arr[0]; // 2
+const b = arr[1]; // 3
+const c = arr[2]; // 4
+const [x, y, z] = arr; // [2, 3, 4]
+console.log(a, b, c, x, y, z);
+
+// switching variables using destructuring
+// const [main, secondary] = restaurant.categories;
+let [main, , secondary] = restaurant.categories; // 공백 값을 통해 중간 값 건너뛰기 가능
+console.log(main, secondary); // Italian Vegiterian
+const tmp = main;
+main = secondary;
+secondary = tmp;
+console.log(main, secondary); // Vegiterian Italian
+[main, secondary] = [secondary, main];
+console.log(main, secondary); // Italian Vegiterian
+
+// function return destructuring
+const [starterCourse, mainCourse] = restaurant.order(2, 2);
+console.log(starterCourse, mainCourse); // Garlic Bread Rijotto
+
+// nested array destructuring
+const nested = [2, 4, [5, 6]];
+const [i, , [j, k]] = nested;
+console.log(i, j, k); // 2 5 6
