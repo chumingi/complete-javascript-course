@@ -276,3 +276,104 @@ rest1.owner &&= '<ANOYMOUS>';
 // rest2.owner = rest2.owner && '<ANOYMOUS>';
 rest2.owner &&= '<ANOYMOUS>';
 console.log(rest1.owner, rest2.owner); // undefined <ANOYMOUS>
+
+// for of loop
+// 전체 배열을 자동으로 반복하고, 각 반복에서 현재 배열 요소에 대한 엑세스 권한 부여
+console.log('--- FOR OF LOOP ---');
+const menu1 = [...restaurant.mainMenu, ...restaurant.starterMenu];
+for (const item of menu1) console.log(item);
+
+// .entries() 함수를 이용하여 [인덱스, 요소] 형태로 반복
+// for (const item of menu1.entries()) {
+for (const [i, e] of menu1.entries()) {
+  // item => [i, e]로 구조분해
+  console.log(`${i + 1}: ${e}`);
+}
+
+// enghanced object literal
+// oES6에서는 object literal을 더 쉽게 작성할 수 있는 3가지 방법 도입
+
+// 1. 한 객체를 다른 객체의 요소로 사용할 때
+// 속성명과 값에 같은 이름 사용하여 중복되는 문제 해결
+/* ES6 이전
+const openingHours = {...}
+const restaurant = {
+  ...
+  openingHours: openingHours
+}
+*/
+/* ES6 이후
+const openingHours = {...}
+const restaurant = {
+  ...
+  openingHours: openingHours
+}
+*/
+
+// 2. 메소드를 생성할 때
+// 함수 표현식을 더 간단하게 작성 가능
+/* ES6 이전
+const restaurant = {
+  ...
+  order: function(starterIndex, mainIndex) {...}
+}
+*/
+/* ES6 이후
+const restaurant = {
+  ...
+  order(starterIndex, mainIndex) {...}
+}
+*/
+
+// 속성명을 작성할 때
+// 문자 그대로 작성하지 않고 연산 가능
+/* ES6 이전
+const openingHours = {
+  thu: {...},
+  fri: {...},
+  sat: {...},
+}
+*/
+/* ES6 이후
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+const openingHours = {
+  [weekdays[3]]: {...}, // thu
+  [weekdays[4]]: {...}, // fri
+  [weekdays[5]]: {...}, // sat
+  [`day-${2 + 4}`]: {...}, // day-6
+}
+*/
+
+// optional chaining (?.)
+// 특정 속성이 존재하지 않으면 (null 또는 undefined), undefined를 즉시 반환하여 에러 방지
+// null 또는 undefined이기 때문에, nullish operator (??)와 함께 사용 가능
+
+console.log('--- OPTIONAL CHAINING ---');
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+// optional chaining을 이용한 간략화
+console.log(restaurant.openingHours?.mon?.open); // undefined
+
+// real world example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 9;
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// 메소드가 존재하는지 확인하고 호출
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'method does not exist'); // undefined 반환, method does not exist 출력
+
+// 배열이 비어있는지 확인
+const users = [
+  { name: 'Jonas', email: 'hello@jonas.io' },
+  { name: 'Mingi', email: 'chumingi794gmail.com' },
+];
+if (users.length >= 0) {
+  console.log(users[0].name);
+} else {
+  console.log('users array empty');
+}
+// optional chaining을 이용한 간략화
+console.log(users[0]?.name ?? 'users array empty');
