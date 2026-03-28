@@ -16,7 +16,7 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 */
 
 'use strict';
-const game = {
+export const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
   players: [
