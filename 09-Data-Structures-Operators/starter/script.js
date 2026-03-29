@@ -1,4 +1,5 @@
 'use strict';
+import { game } from './coding_challenge_1.js';
 
 // Data needed for a later exercise
 const flights =
@@ -377,3 +378,51 @@ if (users.length >= 0) {
 }
 // optional chaining을 이용한 간략화
 console.log(users[0]?.name ?? 'users array empty');
+
+// looping objects - object keys, values, entries
+
+console.log('--- LOOPING OBJECTS ---');
+
+// .keys() - 속성명을 이용한 반복
+const properties = Object.keys(openingHours);
+console.log(properties); // ['thu', 'fri', 'sat']
+let openStr = `We are open on ${properties.length}, day: `;
+for (const day of Object.keys(openingHours)) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// .values() - 속성값을 이용한 반복
+const values = Object.values(openingHours);
+console.log(values);
+
+// .entries() - 속성명 + 속성값을 이용한 반복
+const entreis = Object.entries(openingHours);
+console.log(entreis);
+for (const [day, { open, close }] of entreis) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
+// coding challenge #2
+
+console.log('--- CODING CHALLENGE #2 ---');
+
+// 1
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`);
+}
+
+// 2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) {
+  average += odd;
+}
+average /= odds.length;
+console.log(average);
+
+// 3
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr}: ${odd}`);
+}
