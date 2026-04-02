@@ -46,7 +46,7 @@ ordersSet.add('Garlic Bread');
 ordersSet.add('Garlic Bread');
 console.log(ordersSet); // Set(4) { 'Pasta', 'Pizza', 'Risotto', 'Garlic Bread' }
 
-// Set에서 요소 삭제
+// .delete() - Set에서 요소 삭제
 ordersSet.delete('Risotto');
 console.log(ordersSet); // Set(3) { 'Pasta', 'Pizza', 'Garlic Bread' }
 
