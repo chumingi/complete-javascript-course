@@ -126,4 +126,55 @@ checkBaggage('I have a laptop, some Food and a pocket Knife'); // 'You are NOT a
 checkBaggage('Socks and camera'); // 'Welcome aboard!'
 checkBaggage('Got some snacks and a gun for protection'); // 'Welcome aboard!'
 
-// String.split() - 문자열을 여러 부분으로 나누
+// String.split(s) - s를 기준으로 문자열을 여러 부분으로 나누어 배열로 반환
+console.log('a+very+nice+string'.split('+')); // [ 'a', 'very', 'nice', 'string' ]
+const [firstName, lastName] = 'Chu Mingi'.split(' ');
+
+// String.join() -
+const newMyName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newMyName); // 'Mr. Chu MINGI'
+// join() 및 여러 메소드를 사용하는 예제
+const capitalizeNameJoin = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    // slice() 메소드를 이용하는 방법
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+
+    // replace() 메소드를 이용하는 방법
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeNameJoin('jessica ann smith davis'); // 'Jessica Ann Smith Davis'
+capitalizeNameJoin('Chu Mingi'); // 'Chu Mingi'
+
+// padding - 문자열이 특정 길이가 될 때까지 특정 문자를 추가
+// String.padStart(n, s) - 문자열의 길이가 n이 될 때까지 문자열의 앞에 s를 추가
+// String.padEnd(n, s) - 문자열의 길이가 n이 될 때까지 문자열의 끝에 s를 추가
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+// 문자열의 길이가 20이 될 때까지 문자열의 앞에 '+' 추가,'++++++Go to gate 23!++++++++++'
+console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
+// 문자열의 길이가 30이 될 때까지 문자열의 뒤에 '+' 추가,''+++++++++++++++Jonas++++++++++'
+// 신용카드번호 뒷부분을 *로 처리하는 예제
+const maskCreditCard = function (number) {
+  const str = number + ''; // 입력받은 숫자를 문자열로 변경
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+console.log(maskCreditCard(64637836)); // '****7836'
+console.log(maskCreditCard(43378463864647384)); // '*************7384'
+console.log(maskCreditCard('334859493847755774747')); // '*****************4747'
+
+// String.repeat(n) - 문자열을 nghl 반복
+const message2 = 'Bad waether... All Departues Delayed... ';
+console.log(message2.repeat(5)); // 'Bad waether... All Departues Delayed... ' 5회 반복
+// repeat() 메소드 활용 예제
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'🛩'.repeat(n)}`);
+};
+planesInLine(5); // 'There are 5 planes in line 🛩🛩🛩🛩🛩'
+planesInLine(3); // 'There are 3 planes in line 🛩🛩🛩'
+planesInLine(12); // 'There are 12 planes in line 🛩🛩🛩🛩🛩🛩🛩🛩🛩🛩🛩🛩'
