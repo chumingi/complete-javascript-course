@@ -195,3 +195,37 @@ document.querySelector('button').addEventListener('click', function () {
     console.log(`${output.padEnd(20, ' ')}${'✅'.repeat(i + 1)}`);
   }
 });
+
+// String methods practice
+
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+console.log('--- STRING METHODS PRACTICE ---');
+
+// 문자열의 첫 3글자를 대문자로 변환해주는 함수
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+// 보기 좋은 양식으로 변경하여 콘솔에 출력
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  // const output = `[${type} ${from} ${to} ${time}]`.replace(':', 'h');
+
+  // type 문자열 내의 모든 '_'을 공백으로 변환 - .replaceAll('_', ' )
+  // const output = `[${type.replaceAll('_', ' ')} ${from} ${to} ${time}]`.replace(':', 'h');
+
+  // type이 '_Delayed'로 시작하면 이모지 추가
+  // const output =
+  //   `[${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll('_', ' ')} ${from} ${to} ${time}]`.replace(':', 'h');
+
+  // from과 to의 첫 3글자를 대문자로 변경
+  // const output =
+  //   `[${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll('_', ' ')} ${getCode(from)} ${getCode(to)} ${time}]`.replace(':', 'h');
+
+  // 출력 문자열의 길이가 동일해지도록 문자열 앞에 공백 추가
+  const output =
+    `[${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll('_', ' ')} ${getCode(from)} ${getCode(to)} ${time}]`
+      .replace(':', 'h')
+      .padStart(36);
+  console.log(output);
+}
