@@ -178,3 +178,20 @@ const planesInLine = function (n) {
 planesInLine(5); // 'There are 5 planes in line 🛩🛩🛩🛩🛩'
 planesInLine(3); // 'There are 3 planes in line 🛩🛩🛩'
 planesInLine(12); // 'There are 12 planes in line 🛩🛩🛩🛩🛩🛩🛩🛩🛩🛩🛩🛩'
+
+// Coding Challenge #4
+
+console.log('--- CODING CHALLENGE #4 WITH LEARNER ---');
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+    console.log(`${output.padEnd(20, ' ')}${'✅'.repeat(i + 1)}`);
+  }
+});
