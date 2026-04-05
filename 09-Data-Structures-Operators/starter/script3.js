@@ -19,7 +19,7 @@ console.log(typeof 'B73'.length); // number
 // String.indexOf(s) - 특정 문자/문자열 s가 문자열에서 존재하는 첫 위치를 정수로 반환
 console.log(airline.indexOf('r')); // 6
 
-// String.lastIndexOf(s) - 특정 문자/문자열 s가 문자열에서 whswo하는 akwlakr 위치를 정수로 반환
+// String.lastIndexOf(s) - 특정 문자/문자열 s가 문자열에서 존재하는 마지막 위치를 정수로 반환
 console.log(airline.lastIndexOf('r')); // 10
 console.log(airline.indexOf('Portugal')); // 8, 문자열도 탐색 가능
 console.log(airline.indexOf('portugal')); // -1, 대소문자 구분
@@ -55,7 +55,7 @@ console.log(typeof myName.slice(3)); // string
 
 // 문자열 대소문자 변환
 // String.toLowerCase() - 문자열 내의 모든 문자를 소문자로 변환
-// String.toLowerCase() - 문자열 내의 모든 문자를 대문자로 변환
+// String.toUpperCase() - 문자열 내의 모든 문자를 대문자로 변환
 console.log(airline.toLowerCase()); // 'tab air portugal'
 console.log(airline.toUpperCase()); // 'TAB AIR PORTUGAL'
 // Fix capitalization in name
@@ -74,7 +74,7 @@ const capitalizeName = function (passenger) {
 capitalizeName('jOnaS'); // 'Jonas'
 capitalizeName('gARAm'); // 'Garam'
 
-// String.trim(s) - 문자열 s에서 공백, \n 등을 제거한 새로운 문자열을 반환
+// String.trim() - 문자열 s에서 공백, \n 등을 제거한 새로운 문자열을 반환
 // Comparing emails
 // ES2019에서 trimStart()와 trimEnd() 추가
 const email = 'hello@jonas.io';
@@ -130,7 +130,7 @@ checkBaggage('Got some snacks and a gun for protection'); // 'Welcome aboard!'
 console.log('a+very+nice+string'.split('+')); // [ 'a', 'very', 'nice', 'string' ]
 const [firstName, lastName] = 'Chu Mingi'.split(' ');
 
-// String.join() -
+// Array.join(s) - 여러 개로 나누어져 있는 문자열들을 s를 이용하여 하나로 연결한 문자열을 반환
 const newMyName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
 console.log(newMyName); // 'Mr. Chu MINGI'
 // join() 및 여러 메소드를 사용하는 예제
@@ -168,7 +168,7 @@ console.log(maskCreditCard(64637836)); // '****7836'
 console.log(maskCreditCard(43378463864647384)); // '*************7384'
 console.log(maskCreditCard('334859493847755774747')); // '*****************4747'
 
-// String.repeat(n) - 문자열을 nghl 반복
+// String.repeat(n) - 문자열을 n번 반복
 const message2 = 'Bad waether... All Departues Delayed... ';
 console.log(message2.repeat(5)); // 'Bad waether... All Departues Delayed... ' 5회 반복
 // repeat() 메소드 활용 예제
@@ -211,7 +211,7 @@ for (const flight of flights.split('+')) {
   const [type, from, to, time] = flight.split(';');
   // const output = `[${type} ${from} ${to} ${time}]`.replace(':', 'h');
 
-  // type 문자열 내의 모든 '_'을 공백으로 변환 - .replaceAll('_', ' )
+  // type 문자열 내의 모든 '_'을 공백으로 변환 - .replaceAll('_', ' ')
   // const output = `[${type.replaceAll('_', ' ')} ${from} ${to} ${time}]`.replace(':', 'h');
 
   // type이 '_Delayed'로 시작하면 이모지 추가

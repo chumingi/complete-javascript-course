@@ -40,7 +40,7 @@ document.body.append(document.createElement('button'));
 - DOM에서 textarea 태그를 읽어와 그 값을 '\n' 기준으로 쪼갠 배열을 생성한다.. (.split())
 - 배열의 각 문자열을 순회하면서,
   - 문자열의 모든 글자를 소문자로 바꾼다. (.toLowerCase())
-  - '_'를 기준으로 문자열을 쪼개고, (.split('-'))
+  - '_'를 기준으로 문자열을 쪼개고, (.split('_'))
     - 각 문자열의 첫 글자를 대문자로 바꾼다. (.replace())
   - 쪼개진 문자열들을 다시 하나로 합친다. (.join())
   - textarea의 각 라인이 저장된 배열에서, underscore_case인 문자열을 변환된 문자열로 바꾼다.

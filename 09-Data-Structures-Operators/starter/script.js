@@ -40,7 +40,7 @@ const restaurant = {
   },
 };
 
-// Array desturcturing
+// Array destructuring
 const arr = [2, 3, 4];
 const a = arr[0]; // 2
 const b = arr[1]; // 3
@@ -51,17 +51,17 @@ console.log(a, b, c, x, y, z);
 // switching variables using destructuring
 // const [main, secondary] = restaurant.categories;
 let [main, , secondary] = restaurant.categories; // 공백 값을 통해 중간 값 건너뛰기 가능
-console.log(main, secondary); // Italian Vegiterian
+console.log(main, secondary); // Italian Vegetarian
 const tmp = main;
 main = secondary;
 secondary = tmp;
-console.log(main, secondary); // Vegiterian Italian
+console.log(main, secondary); // Vegetarian Italian
 [main, secondary] = [secondary, main];
-console.log(main, secondary); // Italian Vegiterian
+console.log(main, secondary); // Italian Vegetarian
 
 // function return destructuring
 const [starterCourse, mainCourse] = restaurant.order(2, 2);
-console.log(starterCourse, mainCourse); // Garlic Bread Rijotto
+console.log(starterCourse, mainCourse); // Garlic Bread Risotto
 
 // nested array destructuring
 const nested = [2, 4, [5, 6]];
@@ -204,15 +204,15 @@ const guests2 = restaurant.numGuests || 10;
 console.log(guests2); // 15
 restaurant.numGuests = 0;
 const guests3 = restaurant.numGuests || 10;
-console.log(guests3); // 0
+console.log(guests3); // 10
 
 // && - 첫 연산 대상이 거짓이면 && 뒤는 보지 않음
 console.log('--- AND ---');
 console.log(0 && 'mingi'); // 0
-console.log(2 && 'mingi'); // 'mingi
+console.log(2 && 'mingi'); // 'mingi'
 console.log(23 && 'Hello' && null && 0); // null
 
-// if 조검누 대신 && 사용 가능
+// if 조건문 대신 && 사용 가능
 if (restaurant.orderPizza) {
   restaurant.orderPizza('mushroom', 'spinach');
 }
@@ -236,7 +236,7 @@ const rest2 = {
   owner: 'Chu Mingi',
 };
 
-// OR assignment operator (??=)
+// OR assignment operator (||=)
 // rest1.numGuests = rest1.numGuests || 10;
 rest1.numGuests ||= 10;
 // rest2.numGuests = rest2.numGuests || 10;
@@ -249,7 +249,7 @@ rest1.numGuests ??= 10;
 rest2.numGuests ??= 10;
 console.log(rest1.numGuests, rest2.numGuests); // 0 10
 
-// AND assignment operator (??=)
+// AND assignment operator (&&=)
 // rest1.owner = rest1.owner && '<ANOYMOUS>';
 rest1.owner &&= '<ANOYMOUS>';
 // rest2.owner = rest2.owner && '<ANOYMOUS>';
@@ -269,8 +269,8 @@ for (const [i, e] of menu1.entries()) {
   console.log(`${i + 1}: ${e}`);
 }
 
-// enghanced object literal
-// oES6에서는 object literal을 더 쉽게 작성할 수 있는 3가지 방법 도입
+// enhanced object literal
+// ES6에서는 object literal을 더 쉽게 작성할 수 있는 3가지 방법 도입
 
 // 1. 한 객체를 다른 객체의 요소로 사용할 때
 // 속성명과 값에 같은 이름 사용하여 중복되는 문제 해결
@@ -285,7 +285,7 @@ const restaurant = {
 const openingHours = {...}
 const restaurant = {
   ...
-  openingHours: openingHours
+  openingHours
 }
 */
 

@@ -69,7 +69,7 @@ console.log(staffUnique.size); // 3, 레스토랑 내의 직책 수 확인
 
 // ES2025에서 7개의 메소드 추가
 
-// Set1.intersections(Set2) - 두 집합 모두에 존재하는 요소들을 Set 형태로 반환
+// Set1.intersection(Set2) - 두 집합 모두에 존재하는 요소들을 Set 형태로 반환
 const commonFoods = italianFoods.intersection(mexicanFoods);
 console.log('Intersection:', commonFoods); // Set(2) { 'tomatoes', 'garlic' }
 console.log([...commonFoods]); // 배열로 변환, [ 'tomatoes', 'garlic' ]
@@ -85,13 +85,14 @@ const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
 console.log('Difference italian:', uniqueItalianFoods);
 console.log('Difference mexican:', uniqueMexicanFoods);
 
-// Set1.symmetricDifference(Set2) - Set1과 Set2 각각에만 존재하는 (공토되지 않은) 모든 요소들을 새로운 Set으로 반환
+// Set1.symmetricDifference(Set2) - Set1과 Set2 각각에만 존재하는 (공통되지 않은) 모든 요소들을 새로운 Set으로 반환
 const uniqueItalianAndMexicanFoods =
   italianFoods.symmetricDifference(mexicanFoods);
 console.log('Symmetric difference:', uniqueItalianAndMexicanFoods);
 
-// 3개의 나머지 메소드 - .isDisjointFrom(), isSubset(), isSuperset()
+// 3개의 나머지 메소드 - .isDisjointFrom(), isSubsetOf(), isSuperset()
 console.log('Is disjoint from:', italianFoods.isDisjointFrom(mexicanFoods)); // false
+console.log(italianFoods.is)
 
 // Maps
 // 값을 키에 매핑할 때 사용할 수 있는 자료구조 (ES6에서 도입)
