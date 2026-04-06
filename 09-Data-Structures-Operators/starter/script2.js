@@ -1,22 +1,6 @@
 'use strict';
+import { italianFoods, mexicanFoods, gameEvents } from './data.js';
 
-const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
-]);
-
-const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
-]);
 // Sets
 // ES6에서 도입된 자료구조
 // 고유한 값들의 모임, 내부에 중복 값 존재 불가
@@ -35,25 +19,25 @@ console.log(ordersSet); // Set(3) { 'Pasta', 'Pizza', 'Risotto' }
 const mingiSet = new Set('Mingi');
 console.log(mingiSet); // Set(4) { 'M', 'i', 'n', 'g' }
 
-// .size - Set의 크기 (배열의 .length와 혼동 주의)
+// Set.size - Set의 크기 (배열의 .length와 혼동 주의)
 console.log(ordersSet.size); // 3
 
-// .has() - 특정 요소가 Set 내에 존재하는지 확인
+// Set.has() - 특정 요소가 Set 내에 존재하는지 확인
 console.log(ordersSet.has('Pizza')); // true
 
-// .add() - Set에 요소 추가
+// Set.add() - Set에 요소 추가
 ordersSet.add('Garlic Bread');
 ordersSet.add('Garlic Bread');
 console.log(ordersSet); // Set(4) { 'Pasta', 'Pizza', 'Risotto', 'Garlic Bread' }
 
-// .delete() - Set에서 요소 삭제
+// Set.delete() - Set에서 요소 삭제
 ordersSet.delete('Risotto');
 console.log(ordersSet); // Set(3) { 'Pasta', 'Pizza', 'Garlic Bread' }
 
 // Set에는 인덱스가 존재하지 않음, Set에서 값 추출 불가
 console.log(ordersSet[0]); // undefined
 
-// .clear() - Set의 모든 요소 제거 (빈 Set)
+// Set.clear() - Set의 모든 요소 제거 (빈 Set)
 mingiSet.clear();
 console.log(mingiSet); // Set(0) {}
 
@@ -92,7 +76,7 @@ console.log('Symmetric difference:', uniqueItalianAndMexicanFoods);
 
 // 3개의 나머지 메소드 - .isDisjointFrom(), isSubsetOf(), isSuperset()
 console.log('Is disjoint from:', italianFoods.isDisjointFrom(mexicanFoods)); // false
-console.log(italianFoods.is)
+console.log(italianFoods.is);
 
 // Maps
 // 값을 키에 매핑할 때 사용할 수 있는 자료구조 (ES6에서 도입)
@@ -104,7 +88,7 @@ console.log('___ MAPs ---');
 // Map 생성
 const restaurantMap = new Map();
 
-// .set(키, 값) - Map에 키-값 쌍 추가 및 업데이트된 Map 반환
+// Map.set(키, 값) - Map에 키-값 쌍 추가 및 업데이트된 Map 반환
 restaurantMap.set('name', 'Classico Italiano');
 console.log(restaurantMap.set(1, 'First')); // Map(2) { 'name' => 'Classico Italiano', 1 => 'First' }
 console.log(restaurantMap.set(2, 'Second')); // Map(3) { 'name' => 'Classico Italiano', 1 => 'First', 2 => 'Second' }
@@ -116,12 +100,12 @@ restaurantMap
   .set(false, 'We are closed :(');
 console.log(restaurantMap); // Map(8) {...}
 
-// .get(키) - Map에서 키에 해당하는 값을 반환
+// Map.get(키) - Map에서 키에 해당하는 값을 반환
 console.log(restaurantMap.get('name')); // Classico Italiano
 console.log(restaurantMap.get(true)); // We are open :D
 console.log(restaurantMap.get('1')); // undefined;
 
-// .get()을 이용하여 현재 영업 중인지 확인하는 예제
+// Map.get()을 이용하여 현재 영업 중인지 확인하는 예제
 const time = 21;
 console.log(
   restaurantMap.get(
@@ -129,17 +113,17 @@ console.log(
   ),
 ); // We are open :D
 
-// .has(키) - Map이 특정 키를 포함하는지 여부를 반환
+// Map.has(키) - Map이 특정 키를 포함하는지 여부를 반환
 console.log(restaurantMap.has('categories')); // true
 
-// .delete(키) - Map에서 특정 키-값 쌍을 제거
+// Map.delete(키) - Map에서 특정 키-값 쌍을 제거
 restaurantMap.delete(2);
 console.log(restaurantMap); // Map(7) {...}
 
-// .size - Map의 키-값 쌍의 수 반환
+// Map.size - Map의 키-값 쌍의 수 반환
 console.log(restaurantMap.size); // 7
 
-// .clear() - Map의 모든 키-값 쌍 제거
+// Map.clear() - Map의 모든 키-값 쌍 제거
 restaurantMap.clear();
 console.log(restaurantMap); // Map(0) {}
 
@@ -201,19 +185,6 @@ console.log(questionArr.entries());
 // coding challenge #3
 
 console.log('--- CODING CHALLENGE #3 WITH LEARNER ---');
-export const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
 
 // 1
 const events = [...new Set(gameEvents.values())];

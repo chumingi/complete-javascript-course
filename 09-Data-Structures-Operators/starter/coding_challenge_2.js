@@ -20,7 +20,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 */
 
 'use strict';
-import { game } from './coding_challenge_1.js';
+import { game } from './data.js';
 
 /* 1
 - game.scored 배열을 인덱스-값 형태의 배열로 가져와 반복

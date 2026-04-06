@@ -1,4 +1,5 @@
 'use strict';
+import { flights } from './data.js';
 
 // Strings
 // 문자들의 모임, 배열과 유사
@@ -198,9 +199,6 @@ document.querySelector('button').addEventListener('click', function () {
 
 // String methods practice
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 console.log('--- STRING METHODS PRACTICE ---');
 
 // 문자열의 첫 3글자를 대문자로 변환해주는 함수

@@ -11,8 +11,7 @@ Let's continue with our football betting app! This time, we have a map with a lo
 */
 
 'use strict';
-import { gameEvents } from './script2.js';
-gameEvents.set(64, '🔶 Yellow card'); // import하기 전 script2.js에서 제거된 키-값 추가
+import { gameEvents } from './data.js';
 console.log('--- CODING CHALLENGE #3 BY MYSELF FIRST ---');
 
 /* 1. Create an array 'events' of the different game events that happened (no duplicates)
