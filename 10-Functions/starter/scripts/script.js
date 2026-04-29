@@ -97,3 +97,94 @@ greet('Hello')('Mingi'); // greet 함수가 반환하는 함수가 바로 호출
 // greet() 함수를 화살표 함수로 변경
 const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
 greetArrow('Hi')('Mingi'); // 'Hi Mingi'
+
+// call & apply method
+// call과 apply는 this를 명시적으로 지정할 수 있게 해주는 메서드
+console.log('--- CALL AND APPLY METHOD ---');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`,
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+lufthansa.book(239, 'Mingi Chu');
+// 'Mingi Chu booked a seat on Lufthansa flight LH239'
+lufthansa.book(635, 'John Smith');
+// 'John Smith booked a seat on Lufthansa flight LH635'
+console.log(lufthansa.bookings);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+// book(23, 'Sarah Williams'); // undefined booked a seat on undefined flight undefined23
+// TypeError: Cannot read properties of undefined (reading 'airline')
+// 함수는 일반적으로 호출되는 방식에 따라 this가 결정되는데, book() 함수는 lufthansa 객체의 메서드로 호출되지 않고, 단순히 함수로 호출되었기 때문에 this가 undefined가 됨
+
+// Func.call(obj, args) - this를 명시적으로 지정할 수 있음
+book.call(eurowings, 23, 'Sarah Williams');
+// Sarah Williams booked a seat on Eurowings flight EW23
+console.log(eurowings);
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+// Func.apply(obj, [args]) - call과 동일하지만, 인자를 배열로 전달해야 함
+const flightData = [583, 'George Cooper'];
+book.apply(eurowings, flightData);
+// 최근에는 call()을 주로 사용한다.
+book.call(eurowings, flightData);
+
+// bind method
+// call과 유사하지만, 즉시 호출되지 않고 새로운 함수를 반환함
+console.log('--- BIND METHOD ---');
+
+// this 키워드가 항상 eurowings 객체를 가리키도록 bookEw 함수를 생성
+const bookEw = book.bind(eurowings);
+bookEw(23, 'Steven Williams');
+// 'Steven Williams booked a seat on Eurowings flight EW23'
+
+// partial application - 일부 인자를 미리 설정하여 새로운 함수를 만드는 것
+const bookEw23 = book.bind(eurowings, 23); // flightNum이 23으로 고정된 새로운 함수 생성
+bookEw23('John Doe'); //name 인자만 전달
+// 'John Doe booked a seat on Eurowings flight EW23'
+
+// with event listener
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+// bind()를 사용하지 않으면 this는 버튼 요소를 가리키게 되는데,
+// bind()를 사용하여 this가 항상 lufthansa 객체를 가리키도록 함
+
+// Partial application 추가 예제
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200)); // 220
+const addVAT = addTax.bind(null, 0.23); // addTax에서 rate가 value보다 먼저 오기 때문에, rate 인자를 0.23으로 고정한 새로운 함수 생성
+// addVAT = value => value + value * 0.23;와 동일
+console.log(addVAT(100)); // 123
+
+// 함수를 반환하는 함수 형태로 예제 수정
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100)); // 123
