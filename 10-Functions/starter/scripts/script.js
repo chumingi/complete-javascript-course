@@ -1,4 +1,5 @@
 'use strict';
+import { poll } from '../data.js';
 
 // Default Paramters
 // 함수 파라미터의 기본값을 변경하고 싶지 않은 경우, 파라미터를 적지 않아도 됨
@@ -188,3 +189,38 @@ const addTaxRate = function (rate) {
 };
 const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100)); // 123
+
+// coding challenge #1
+console.log('--- CODING CHALLENGE #1 WITH LEARNER ---');
+
+poll.registerNewAnswer = function () {
+  const answer = Number(
+    prompt(
+      `${this.question}\n${this.options.join('\n')}\n(Write option number)`,
+    ),
+  );
+  console.log(answer);
+
+  typeof answer === 'number' &&
+    answer < this.answers.length &&
+    this.answers[answer]++;
+  console.log(this.answers);
+
+  this.displayResults();
+  this.displayResults('string');
+};
+
+poll.displayResults = function (type = 'array') {
+  if (type === 'array') {
+    console.log(this.answers);
+  } else if (type === 'string') {
+    console.log(`Poll results are ${this.answers.join(', ')}`);
+  }
+};
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
