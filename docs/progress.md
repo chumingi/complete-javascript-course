@@ -70,3 +70,4 @@
 | 2026-05-05 | 10 | IIFE, 클로저, 코딩 챌린지 2 | IIFE 종료 후에도 VE가 살아있음을 챌린지에서 직접 검증 | 📖 ✍️ |
 | 2026-05-06 | 10 | 섹션 10 README 작성 | 클로저를 중심으로 개념들을 하나의 서사로 묶는 구조로 작성 | 💬 🔧 |
 | 2026-05-07 | 11 | `slice`·`splice`·`at`·`forEach`, ES 모듈 구조 셋업 | slice와 달리 splice는 원본 배열을 직접 바꾼다 | 📖 🔧 |
+| 2026-05-14 | 11 | `displayMovements` 구현·`forEach` + `insertAdjacentHTML`·Bankist 파일 분리 | `insertAdjacentHTML('afterbegin')`으로 최신 항목이 상단에 오는 패턴 처음 적용 | 📖 💬 |
