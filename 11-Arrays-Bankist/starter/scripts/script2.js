@@ -32,7 +32,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 
 const displayMovements = function (movements) {
-  class친;
   containerMovements.innerHTML = '';
 
   movements.forEach((mov, i) => {
