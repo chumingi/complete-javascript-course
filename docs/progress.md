@@ -73,3 +73,4 @@
 | 2026-05-14 | 11 | `displayMovements` 구현·`forEach` + `insertAdjacentHTML`·Bankist 파일 분리 | `insertAdjacentHTML('afterbegin')`으로 최신 항목이 상단에 오는 패턴 처음 적용 | 📖 💬 |
 | 2026-05-15 코딩 챌린지 1, `slice` vs `splice`, `forEach` | 자체 구현에서 한 군데가 틀렸다 — `slice(1, -1)`은 뒤 2개가 아닌 1개만 제거 | ✍️ 📖 |
 | 2026-05-21 | 11 | `map`·`filter`·`reduce` 실습, 코딩 챌린지 2 | reduce 내부에서 나누는 패턴을 강의 비교에서 처음 확인 | 📖 ✍️ |
+| 2026-05-26 | 11 | `calcDisplaySummary`, 체이닝 반복 구조 | 비즈니스 정책(1유로 미만 이자 미지급)이 체이닝 한 단계로 표현됨 | 📖 |
